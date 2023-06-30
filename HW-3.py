@@ -30,6 +30,11 @@ class Products:
             new_products_dict = {k: v for k, v in self.products.items() if other.products.get(k)==None}
             return Products(new_products_dict)
 
+    def __rsub__(self,other):
+         if isinstance(other, int):
+            return Products(self.products, self.bonuses - other)
+              
+
 
 products1 = Products({'Молоко': 3, 'Сыр': 5})
 print(f'Цена: {products1.get_products_price()}. {products1.products}')
@@ -39,4 +44,7 @@ print(f'Цена: {products3.get_products_price()}. {products3.products}')
 products4 = products3 + 2
 print(f'Цена: {products4.get_products_price()}. {products4.products}')
 products5 = products4 - products1
+products5 = products5 -2
+print(f'Цена: {products5.get_products_price()}. {products5.products}')
+products5 = 1-products5 
 print(f'Цена: {products5.get_products_price()}. {products5.products}')
